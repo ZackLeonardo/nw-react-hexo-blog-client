@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>test react in nw</title>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script>
+      // Transfer window properties to global for use by traditionally
+      // browser-based software, including React.
+      global.window = window;
+      global.document = document;
+      global.navigator = navigator;
+
+      // Initialize the application.
+      // require('./app')('main');
+      var React = require('react');
+      var ReactDOM = require('react-dom');
+
+      ReactDOM.render(
+        React.createElement('h1', null, 'Hello, world!'),
+        document.getElementById('example')
+      );
+
+
+    </script>
+  </body>
+</html>
