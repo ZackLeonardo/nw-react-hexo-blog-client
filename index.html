@@ -9,6 +9,14 @@
       <h1>this is a nw-react test.</h1>
     </div>
     <div id="example"></div>
+    <!-- <script type="text/javascript">
+      global.window = window;
+      global.document = document;
+      global.navigator = navigator;
+      (function() {
+        require('./App/Components/test')('example');
+      })();
+    </script> -->
     <script>
       // Transfer window properties to global for use by traditionally
       // browser-based software, including React.
@@ -16,9 +24,10 @@
       global.document = document;
       global.navigator = navigator;
 
+
       // Initialize the application.
       (function() {
-        require('./App/Components/test')('example');
+        require('./dist/components/test')('example');
       })();
 
     </script>
