@@ -3,20 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>test react in nw</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
   </head>
   <body>
-    <div>
-      <h1>this is a nw-react test.</h1>
+    <div id='example'>
+
     </div>
-    <div id="example"></div>
-    <!-- <script type="text/javascript">
-      global.window = window;
-      global.document = document;
-      global.navigator = navigator;
-      (function() {
-        require('./App/Components/test')('example');
-      })();
-    </script> -->
+
     <script>
       // Transfer window properties to global for use by traditionally
       // browser-based software, including React.
@@ -24,12 +18,14 @@
       global.document = document;
       global.navigator = navigator;
 
-
       // Initialize the application.
       (function() {
         require('./dist/components/test')('example');
       })();
 
     </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
   </body>
 </html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<head>
+	<title>React Markdown Editor</title>
+	<link rel="stylesheet" href="css/example.css">
+</head>
+<body>
+	<div class="container">
+		<h1>React Markdown Editor</h1>
+		<h2>View project on GitHub</a></h2>
+		<!-- the example app is rendered into this div -->
+		<div id="app"></div>
+		<div class="footer">
+			Copyright &copy; 2015 Jed Watson.
+		</div>
+	</div>
+	<!-- <script src="common.js"></script>
+	<script src="bundle.js"></script> -->
+	<!-- <script src="dist/components/mdeditor.js"></script> -->
+  <script>
+    // Transfer window properties to global for use by traditionally
+    // browser-based software, including React.
+    global.window = window;
+    global.document = document;
+    global.navigator = navigator;
+
+    // Initialize the application.
+    // (function() {
+    //
+    // })();
+		require('./dist/components/app');
+
+  </script>
+</body>

@@ -1,19 +1,22 @@
 {
   "name": "nw-demo",
-  "main": "index.html",
+  "main": "mdeditor.html",
   "description": "hexo-client",
   "version": "0.0.1",
   "window": {
     "toolbar": true,
     "min_width": 300,
     "min_height": 475,
-    "max_width": 800,
-    "max_height": 600
+    "max_width": 1360,
+    "max_height": 900
   },
   "webkit": {
     "plugin": true
   },
   "dependencies": {
+    "classnames": "^2.2.0",
+    "codemirror": "^5.8.0",
+    "marked": "^0.3.5",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-router": "^1.0.0"

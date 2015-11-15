@@ -4,6 +4,19 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+// var MarkdownEditor = require('react-markdown-editor').MarkdownEditor;
+//
+// var input = '# This is a header\n\nAnd this is a paragraph';
+//
+// var TestComponent = React.createClass({
+//     render: function() {
+//         return (
+//             <MarkdownEditor initialContent={input}/>
+//         );
+//     }
+// });
+//
+// React.render(<TestComponent />, document.getElementById('example'));
 
 // React.render(
 //   React.createElement('div', null, 'Hello, world!'),
