@@ -22,12 +22,7 @@ var Example = _react2.default.createClass({
       _SplitPane2.default,
       { split: 'vertical', minSize: '50', defaultSize: '100' },
       _react2.default.createElement('div', null),
-      _react2.default.createElement(
-        _SplitPane2.default,
-        { split: 'horizontal' },
-        _react2.default.createElement('div', null),
-        _react2.default.createElement('div', null)
-      )
+      _react2.default.createElement('div', { id: 'app' })
     );
   }
 
