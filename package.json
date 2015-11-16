@@ -1,6 +1,6 @@
 {
   "name": "nw-demo",
-  "main": "mdeditor.html",
+  "main": "splitPane.html",
   "description": "hexo-client",
   "version": "0.0.1",
   "window": {
@@ -19,7 +19,8 @@
     "marked": "^0.3.5",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
-    "react-router": "^1.0.0"
+    "react-router": "^1.0.0",
+    "react-vendor-prefix": "0.0.1"
   },
   "devDependencies": {
     "babel": "^6.1.18",
