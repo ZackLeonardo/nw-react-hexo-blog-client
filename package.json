@@ -3,7 +3,16 @@
   "main": "index.html",
   "description": "hexo-client",
   "version": "0.0.1",
+  "keywords": ["node", "nw", "node-webkit", "react", "hexo", "blog"],
+  "maintainers": [{
+    "name": "Zou Deyi",
+    "email": "maiz9088@icloud.com",
+    "web": "https://github.com/ZackLeonardo/nw-hexo-blog-client"
+  }],
+  "inject-js-start": "src/components/nwGui/nwGui.js",
+  "no-edit-menu": false,
   "window": {
+    "title": "nw-blog",
     "toolbar": true,
     "min_width": 300,
     "min_height": 475,
@@ -13,6 +22,7 @@
   "webkit": {
     "plugin": true
   },
+
   "dependencies": {
     "classnames": "^2.2.0",
     "codemirror": "^5.8.0",
