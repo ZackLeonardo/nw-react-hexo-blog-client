@@ -18,7 +18,7 @@ var TestComponent = React.createClass({
     }
 });
 
-React.render(React.createElement(TestComponent, null), document.getElementById('example'));
+ReactDOM.render(React.createElement(TestComponent, null), document.getElementById('example'));
 
 // React.render(
 //   React.createElement('div', null, 'Hello, world!'),
