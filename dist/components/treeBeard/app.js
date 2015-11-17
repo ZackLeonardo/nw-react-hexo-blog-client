@@ -22,12 +22,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var data = {
     name: 'root',
-    toggled: true,
     children: [{
         name: 'parent',
         children: [{
             name: 'child',
-            terminal: true
+            terminal: true,
+            filePath: 'root/parent/child'
         }]
     }, {
         name: 'loading parent',
@@ -38,7 +38,8 @@ var data = {
             name: 'nested parent',
             children: [{
                 name: 'nested child',
-                terminal: true
+                terminal: true,
+                filePath: 'root/parent/nested parent/nested child'
             }]
         }]
     }]
@@ -50,13 +51,32 @@ var TreeBeard = (function (_React$Component) {
     function TreeBeard(props) {
         _classCallCheck(this, TreeBeard);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(TreeBeard).call(this, props));
+        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TreeBeard).call(this, props));
+
+        _this.state = {};
+        _this.onToggle = _this.onToggle.bind(_this);
+        return _this;
     }
 
     _createClass(TreeBeard, [{
+        key: 'onSubTreeToggled',
+        value: function onSubTreeToggled(node, toggled) {
+            // Store Toggle State
+            node.toggled = toggled;
+        }
+    }, {
         key: 'onToggle',
-        value: function onToggle() /* node, toggled */{
-            // ...
+        value: function onToggle(node, toggled) {
+            if (this.state.cursor) {
+                this.state.cursor.active = false;
+            }
+            node.active = true;
+            if (!node.terminal) {
+                this.onSubTreeToggled(node, toggled);
+            } else {
+                window.alert(node.filePath);
+            }
+            this.setState({ cursor: node });
         }
     }, {
         key: 'render',

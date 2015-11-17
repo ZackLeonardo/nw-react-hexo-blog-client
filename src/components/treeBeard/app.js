@@ -6,14 +6,14 @@ import {Treebeard} from './treeBeard';
 
 const data = {
     name: 'root',
-    toggled: true,
     children: [
         {
             name: 'parent',
             children: [
                 {
                     name: 'child',
-                    terminal: true
+                    terminal: true,
+                    filePath: 'root/parent/child'
                 }
             ]
         },
@@ -29,7 +29,8 @@ const data = {
                     children: [
                         {
                             name: 'nested child',
-                            terminal: true
+                            terminal: true,
+                            filePath: 'root/parent/nested parent/nested child'
                         }
                     ]
                 }
@@ -38,21 +39,39 @@ const data = {
     ]
 };
 
+
+
 class TreeBeard extends React.Component {
-    constructor(props){
-        super(props);
+  constructor(props){
+    super(props);
+    this.state = {};
+    this.onToggle = this.onToggle.bind(this);
+  }
+  onSubTreeToggled(node, toggled){
+    // Store Toggle State
+    node.toggled = toggled;
+  }
+  onToggle(node, toggled){
+    if(this.state.cursor){
+      this.state.cursor.active = false;
     }
-    onToggle(/* node, toggled */){
-        // ...
+    node.active = true;
+    if(!node.terminal){
+      this.onSubTreeToggled(node, toggled);
+    }else{
+      window.alert(node.filePath);
     }
-    render(){
-        return (
-            <Treebeard
-                data={data}
-                onToggle={this.onToggle}
-            />
-        );
-    }
+    this.setState({ cursor: node });
+
+  }
+  render(){
+    return (
+      <Treebeard
+        data={data}
+        onToggle={this.onToggle}
+      />
+    );
+  }
 }
 
 const content = document.getElementById('treeBeard');
