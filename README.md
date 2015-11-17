@@ -1,4 +1,4 @@
-# nw-hexo-blog-client
+# nw-react-hexo-blog-client
 a blog client using md, which is based on hexo and nw.
 
 There is a nw demo using react: nw-react-hello-world in ./Examples
