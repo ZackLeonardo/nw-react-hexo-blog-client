@@ -91,5 +91,4 @@ var TreeBeard = (function (_React$Component) {
     return TreeBeard;
 })(_react2.default.Component);
 
-var content = document.getElementById('treeBeard');
-_reactDom2.default.render(_react2.default.createElement(TreeBeard, null), content);
+_reactDom2.default.render(_react2.default.createElement(TreeBeard, null), document.getElementById('fileTree'));

@@ -4,10 +4,10 @@ module.exports = {
     tree: {
         base: {
             listStyle: 'none',
-            backgroundColor: '#21252B',
+            backgroundColor: 'white', //'#21252B'
             margin: 0,
             padding: 0,
-            color: '#9DA5AB',
+            color: '#000000',
             fontFamily: 'lucida grande ,tahoma,verdana,arial,sans-serif',
             fontSize: '14px'
         },
@@ -42,7 +42,7 @@ module.exports = {
                 height: 14,
                 width: 14,
                 arrow: {
-                    fill: '#9DA5AB',
+                    fill: '#000000',
                     strokeWidth: 0
                 }
             },
@@ -50,7 +50,7 @@ module.exports = {
                 base: {
                     display: 'inline-block',
                     verticalAlign: 'top',
-                    color: '#9DA5AB'
+                    color: '#000000'
                 },
                 connector: {
                     width: '2px',

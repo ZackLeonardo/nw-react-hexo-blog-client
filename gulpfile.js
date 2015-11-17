@@ -30,16 +30,16 @@ var babel = require("gulp-babel");
 //     .pipe(gulp.dest("dist/components/md"));
 // });
 
-// /*
-//  * splitPane
-//  */
-// gulp.task('default',['splitPane_pane', 'splitPane_resizer', 'splitPane_splitPane', 'splitPane_app']);
-//
-// gulp.task("splitPane_pane", function () {
-//   return gulp.src("src/components/splitPane/Pane.js")
-//     .pipe(babel())
-//     .pipe(gulp.dest("dist/components/splitPane"));
-// });
+/*
+ * splitPane
+ */
+gulp.task('default',['splitPane', 'treeBeard']);
+
+gulp.task("splitPane", function () {
+  return gulp.src("src/components/splitPane/**/*.js")
+    .pipe(babel())
+    .pipe(gulp.dest("dist/components/splitPane"));
+});
 //
 // gulp.task("splitPane_resizer", function () {
 //   return gulp.src("src/components/splitPane/Resizer.js")
@@ -63,7 +63,7 @@ var babel = require("gulp-babel");
 /*
  * TreeBeard
  */
-gulp.task('default',['treeBeard']);
+// gulp.task('default',['treeBeard']);
 
 gulp.task("treeBeard", function () {
   return gulp.src("src/components/treeBeard/**/*.js")

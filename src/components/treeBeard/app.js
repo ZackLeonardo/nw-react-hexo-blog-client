@@ -74,5 +74,4 @@ class TreeBeard extends React.Component {
   }
 }
 
-const content = document.getElementById('treeBeard');
-ReactDOM.render(<TreeBeard />, content);
+ReactDOM.render(<TreeBeard />, document.getElementById('fileTree'));

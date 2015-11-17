@@ -2,6 +2,13 @@
 // splitPane Stylesheet
 // -------------------
 */
+.leftMenu {
+  padding-left: 8px;
+}
+
+.rightContent {
+  padding-left: 8px;
+}
 
 .Resizer {
     -moz-box-sizing: border-box;

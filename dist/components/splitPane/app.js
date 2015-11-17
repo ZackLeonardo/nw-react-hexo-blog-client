@@ -20,9 +20,9 @@ var Example = _react2.default.createClass({
   render: function render() {
     return _react2.default.createElement(
       _SplitPane2.default,
-      { split: 'vertical', minSize: '50', defaultSize: '100' },
-      _react2.default.createElement('div', null),
-      _react2.default.createElement('div', { id: 'app' })
+      { split: 'vertical', minSize: '60', defaultSize: '150' },
+      _react2.default.createElement('div', { id: 'fileTree', className: 'leftMenu' }),
+      _react2.default.createElement('div', { id: 'app', className: 'rightContent' })
     );
   }
 
