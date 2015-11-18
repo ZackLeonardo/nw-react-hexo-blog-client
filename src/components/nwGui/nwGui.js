@@ -1,7 +1,14 @@
 // Load native UI library
 var gui = require('nw.gui');
 
-win = gui.Window.get();
+var win = gui.Window.get();
+
+var docWindowOptions = {
+  "new-instance": false,
+  "show_in_taskbar":true,
+  "toolbar":false,
+  "show": true
+};
 
 // Create menu
 var nativeMenuBar = new gui.Menu({ type: "menubar" });
@@ -12,27 +19,68 @@ nativeMenuBar.createMacBuiltin("nw-blog",{
   hideWindow: false
 });
 
+/*
+ * conf_env
+ */
 // Create sub-menu
-var menuItems = new gui.Menu();
-menuItems.append(new gui.MenuItem({ label: '配置node' }));
-menuItems.append(new gui.MenuItem({ label: '配置hexo' }));
+var menuItems_conf_env = new gui.Menu();
+menuItems_conf_env.append(new gui.MenuItem({ label: '配置node环境' }));
+menuItems_conf_env.append(new gui.MenuItem({ label: '配置hexo环境' }));
 
 // Append MenuItem as a Submenu
-var menu_conf = new gui.MenuItem({
-  label: '配置环境',
-  submenu: menuItems // menu elements from menuItems object
+var menu_conf_env = new gui.MenuItem({
+  label: '环境配置',
+  submenu: menuItems_conf_env // menu elements from menuItems object
 })
-nativeMenuBar.append(menu_conf);
+nativeMenuBar.append(menu_conf_env);
 
-menuItems.items[0].click = function() {
+menuItems_conf_env.items[0].click = function() {
   // win.close();
-  alert("配置node");
+  alert("配置node环境");
 };
 
-menuItems.items[1].click = function() {
+menuItems_conf_env.items[1].click = function() {
   // win.close();
-  alert("配置hexo");
+  alert("配置hexo环境");
 };
+
+/*
+ * conf_hexo
+ */
+// Create sub-menu
+var menuItems_conf_hexo = new gui.Menu();
+menuItems_conf_hexo.append(new gui.MenuItem({ label: '初始化hexo' }));
+menuItems_conf_hexo.append(new gui.MenuItem({ label: '配置hexo' }));
+
+// Append MenuItem as a Submenu
+var menu_conf_hexo = new gui.MenuItem({
+  label: 'hexo配置',
+  submenu: menuItems_conf_hexo // menu elements from menuItems object
+})
+nativeMenuBar.append(menu_conf_hexo);
+
+menuItems_conf_hexo.items[0].click = function() {
+  // win.close();
+  alert("初始化hexo");
+};
+
+menuItems_conf_hexo.items[1].click = function() {
+  window.open('http://www.ishadowsocks.com');
+  win.close();
+};
+
+win.on('close', function() {
+  this.hide(); // Pretend to be closed already
+  console.log("We're closing...");
+  this.close(true);
+});
+
+
+
+// // Release the 'win' object here after the new window is closed.
+// win.on('closed', function() {
+//   win = null;
+// });
 
 win.menu = nativeMenuBar;
 
