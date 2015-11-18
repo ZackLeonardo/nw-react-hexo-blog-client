@@ -1,15 +1,20 @@
 // Load native UI library
-var gui = require('nw.gui');
+// var gui = require('nw.gui');
+var gui = global.window.nwDispatcher.requireNwGui();
 
 var win = gui.Window.get();
+var win_hexo_init;
+var win_hexo_conf;
 
-var docWindowOptions = {
-  "new-instance": false,
-  "show_in_taskbar":true,
-  "toolbar":false,
-  "show": true
+var winOptions = {
+  position: 'center',
+  width: Window.width,
+  height: Window.height,
+  toolbar: false,
+  focus: true
 };
 
+var listChildrenWins = new Array();
 // Create menu
 var nativeMenuBar = new gui.Menu({ type: "menubar" });
 
@@ -37,6 +42,7 @@ nativeMenuBar.append(menu_conf_env);
 menuItems_conf_env.items[0].click = function() {
   // win.close();
   alert("配置node环境");
+  alert(window.navigator.language);
 };
 
 menuItems_conf_env.items[1].click = function() {
@@ -60,31 +66,55 @@ var menu_conf_hexo = new gui.MenuItem({
 nativeMenuBar.append(menu_conf_hexo);
 
 menuItems_conf_hexo.items[0].click = function() {
-  // win.close();
-  alert("初始化hexo");
+  // alert("初始化hexo");
+  if (win_hexo_init){
+    return;
+  }
+  win_hexo_init = gui.Window.open('http://www.renren.com', winOptions);
+  win_hexo_init.on('close', function() {
+    // this.hide();
+    // console.log("win_hexo_init is closing...");
+    this.close(true);
+  });
+  win_hexo_init.on('closed', function() {
+    win_hexo_init = null;
+  });
 };
 
 menuItems_conf_hexo.items[1].click = function() {
-  window.open('http://www.ishadowsocks.com');
-  win.close();
+// alert("hexo配置");
+  if (win_hexo_conf){
+    return;
+  }
+  win_hexo_conf = gui.Window.open('http://www.ishadowsocks.com', winOptions);
+  win_hexo_conf.on('close', function() {
+    // this.hide();
+    // console.log("win_hexo_init is closing...");
+    this.close(true);
+  });
+  win_hexo_conf.on('closed', function() {
+    win_hexo_conf = null;
+  });
 };
+
+win.on('new-win-policy', function(frame, url, policy) {
+  console.log("new-win-policy called: " + url);
+  // policy.forceCurrent(); //加上这个你就可以在一个页面打开不同链接啦！force the link to be opened in the same frame
+});
 
 win.on('close', function() {
   this.hide(); // Pretend to be closed already
   console.log("We're closing...");
+  // If the new window is still open then close it.
+  if (win_hexo_init != null)
+    win_hexo_init.close(true);
+  if (win_hexo_conf != null)
+    win_hexo_conf.close(true);
   this.close(true);
 });
 
-
-
-// // Release the 'win' object here after the new window is closed.
-// win.on('closed', function() {
-//   win = null;
-// });
+win.on('closed', function() {
+  win = null;
+});
 
 win.menu = nativeMenuBar;
-
-try {
-} catch (ex) {
-  console.log(ex.message);
-}

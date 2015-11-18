@@ -22,7 +22,7 @@
   "no-edit-menu": false,
   "window": {
     "title": "nw-blog",
-    "toolbar": true,
+    "toolbar": false,
     "min_width": 300,
     "min_height": 475,
     "max_width": 1360,
