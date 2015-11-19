@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- OR NONE IF YOU ARE USING PURE JAVASCRIPT -->
+  <meta charset="utf-8">
+</head>
+<body>
+  <div class="">
+    <h1>please choose an empty folder:</h1>
+    <input id="fileDialog" type="file" nwdirectory onChange="chooseFile('#fileDialog')"/>
+  </div>
+
+<script>
+  function chooseFile(name) {
+    var chooser = document.querySelector(name);
+    chooser.addEventListener("change", function(evt) {
+      console.log(this.value);
+    }, false);
+
+    // chooser.click();
+  }
+  chooseFile('#fileDialog');
+</script>
+</body>
+</html>

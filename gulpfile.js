@@ -1,7 +1,7 @@
 var gulp = require("gulp");
 var babel = require("gulp-babel");
 
-gulp.task('default',['fileSelector']);
+gulp.task('default',['folderSelector']);
 
 /*
  * MDEditor
@@ -34,11 +34,22 @@ gulp.task("treeBeard", function () {
 
 
 /*
- * TreeBeard
+ * fileSelector
  */
 // gulp.task('default',['treeBeard']);
 gulp.task("fileSelector", function () {
   return gulp.src("src/components/fileSelector/**/*.js")
     .pipe(babel())
     .pipe(gulp.dest("dist/components/fileSelector"));
+});
+
+
+/*
+ * folderSelector
+ */
+// gulp.task('default',['treeBeard']);
+gulp.task("folderSelector", function () {
+  return gulp.src("src/components/nwFileDialog/**/*.js")
+    .pipe(babel())
+    .pipe(gulp.dest("dist/components/nwFileDialog"));
 });

@@ -1,6 +1,6 @@
 {
   "name": "nw-demo",
-  "main": "fileSelector.html",
+  "main": "fileDialog.html",
   "description": "hexo-client",
   "version": "0.0.1",
   "keywords": [

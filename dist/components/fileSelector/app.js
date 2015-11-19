@@ -8,14 +8,11 @@ var FileSelector = React.createClass({
   displayName: 'FileSelector',
 
   handleSubmit: function handleSubmit() {
-    $(this.refs['myForm'].getDOMNode()).fileupload('add', { url: "myurl" });
+    console.log(this.refs['fileInput']);
+    // $(this.refs['myForm'].getDOMNode()).fileupload('add', {url: "myurl"});
   },
   render: function render() {
-    return React.createElement(
-      'form',
-      { ref: 'myForm', enctype: 'multipart/form-data', onSubmit: this.handleSubmit },
-      React.createElement('input', { type: 'file', webkitdirectory: true, directory: true, multiple: true })
-    );
+    return React.createElement('input', { ref: 'fileInput', type: 'file', webkitdirectory: true, directory: true, multiple: true, onChange: this.handleSubmit() });
   }
 });
 
