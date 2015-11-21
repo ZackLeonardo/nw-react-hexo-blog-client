@@ -39,9 +39,9 @@
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-router": "^1.0.0",
+    "react-utils": "github:alexcurtis/react-utils",
     "react-vendor-prefix": "0.0.1",
-    "velocity-react": "^1.1.1",
-    "react-utils": "github:alexcurtis/react-utils"
+    "velocity-react": "^1.1.1"
   },
   "devDependencies": {
     "babel": "^6.1.18",

@@ -4,13 +4,15 @@
   <!-- OR NONE IF YOU ARE USING PURE JAVASCRIPT -->
   <meta charset="utf-8">
   <script src="src/components/backServer/fs.js"></script>
+  <script src="src/components/backServer/hexo.js"></script>
 </head>
 <body>
   <div class="">
     <h1>please choose a hexo dictionary:</h1>
     <input id="fileDialog" type="file" nwdirectory onChange="chooseFile('#fileDialog')"/>
+    <p id="hexo_logs"></p>
+    <p id="npm_logs"></p>
   </div>
-  <div id=""></div>
 
 <script>
   function chooseFile(name) {
@@ -23,6 +25,8 @@
           deleteFolderRecursive(this.value);
           // deleteFolderCMD(this.value);
           mkdir(this.value);
+          hexoInit(this.value);
+
         }else{
           console.log(this.value + "kept as it was.");
         }
