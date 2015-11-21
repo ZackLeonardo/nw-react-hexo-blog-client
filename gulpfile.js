@@ -1,7 +1,7 @@
 var gulp = require("gulp");
 var babel = require("gulp-babel");
 
-gulp.task('default',['folderSelector']);
+gulp.task('default',['mdeditor', 'folderSelector', 'splitPane', 'treeBeard']);
 
 /*
  * MDEditor

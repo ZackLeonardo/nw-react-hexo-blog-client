@@ -70,7 +70,7 @@ menuItems_conf_hexo.items[0].click = function() {
   if (win_hexo_init){
     return;
   }
-  win_hexo_init = gui.Window.open('http://www.renren.com', winOptions);
+  win_hexo_init = gui.Window.open('fileDialog.html', winOptions);
   win_hexo_init.on('close', function() {
     // this.hide();
     // console.log("win_hexo_init is closing...");
