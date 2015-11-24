@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- OR NONE IF YOU ARE USING PURE JAVASCRIPT -->
+  <meta charset="utf-8">
+  <script src="src/components/backServer/fs.js"></script>
+  <script src="src/components/backServer/hexo.js"></script>
+</head>
+<body>
+  <div class="">
+    <h1>please choose a hexo dictionary:</h1>
+    <input id="fileDialog" type="file" nwdirectory onChange="chooseFile('#fileDialog')"/>
+    <p id="hexo_logs"></p>
+    <p id="npm_logs"></p>
+  </div>
+  <!-- <div id="progressButton"></div> -->
+
+  <script>
+    global.window = window;
+    global.document = document;
+    global.navigator = navigator;
+
+    require('./dist/components/progressUI/progressButton');
+  </script>
+
+  <script>
+    function chooseFile(name) {
+      var chooser = document.querySelector(name);
+      chooser.addEventListener("change", function(evt) {
+        if (this.value != ''){
+          var r=confirm("the folder will be emptied, are you sure?")
+          if (r==true)
+          {
+            deleteFolderRecursive(this.value);
+            // deleteFolderCMD(this.value);
+            mkdir(this.value);
+            hexoInit(this.value);
+
+          }else{
+            console.log(this.value + "kept as it was.");
+          }
+        }
+      }, false);
+      // chooser.click();
+    }
+    chooseFile('#fileDialog');
+  </script>
+</body>
+</html>

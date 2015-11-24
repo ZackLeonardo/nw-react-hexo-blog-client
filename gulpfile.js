@@ -1,7 +1,8 @@
 var gulp = require("gulp");
 var babel = require("gulp-babel");
 
-gulp.task('default',['mdeditor', 'folderSelector', 'splitPane', 'treeBeard']);
+// gulp.task('default',['mdeditor', 'folderSelector', 'splitPane', 'treeBeard']);
+gulp.task('default',['progressUI']);
 
 /*
  * MDEditor
@@ -52,4 +53,13 @@ gulp.task("folderSelector", function () {
   return gulp.src("src/components/nwFileDialog/**/*.js")
     .pipe(babel())
     .pipe(gulp.dest("dist/components/nwFileDialog"));
+});
+
+/*
+ * progressUI
+ */
+gulp.task("progressUI", function () {
+  return gulp.src("src/components/progressUI/**/*.js")
+    .pipe(babel())
+    .pipe(gulp.dest("dist/components/progressUI"));
 });
