@@ -86,7 +86,7 @@ menuItems_conf_hexo.items[1].click = function() {
   if (win_hexo_conf){
     return;
   }
-  win_hexo_conf = gui.Window.open('http://www.ishadowsocks.com', winOptions);
+  win_hexo_conf = gui.Window.open('hexoConfig.html', winOptions);
   win_hexo_conf.on('close', function() {
     // this.hide();
     // console.log("win_hexo_init is closing...");

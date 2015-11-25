@@ -22,6 +22,12 @@ var deleteFolderRecursive = function(path) {
   }
 };
 
+var deleteFile = function (filePath) {
+  if (filePath != ''){
+    fs.unlinkSync(filePath);
+  }
+}
+
 var deleteFolderCMD = function (path) {
   exec('rm -rf ' + path ,function(err,out) {
     console.log(out); err && console.log(err);

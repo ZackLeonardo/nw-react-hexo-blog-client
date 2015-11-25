@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <script src="src/components/backServer/fs.js"></script>
   <script src="src/components/backServer/hexo.js"></script>
+  <script src="src/components/backServer/writeConfig.js"></script>
 </head>
 <body>
   <div class="">
@@ -15,13 +16,13 @@
   </div>
   <!-- <div id="progressButton"></div> -->
 
-  <script>
+  <!-- <script>
     global.window = window;
     global.document = document;
     global.navigator = navigator;
 
     require('./dist/components/progressUI/progressButton');
-  </script>
+  </script> -->
 
   <script>
     function chooseFile(name) {
@@ -31,9 +32,10 @@
           var r=confirm("the folder will be emptied, are you sure?")
           if (r==true)
           {
+            deleteFile("./config.yml");
             deleteFolderRecursive(this.value);
-            // deleteFolderCMD(this.value);
             mkdir(this.value);
+            writeConfigFile(this.value);
             hexoInit(this.value);
 
           }else{

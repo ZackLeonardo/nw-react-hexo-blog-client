@@ -8,13 +8,12 @@ var hexoInit = function (path) {
     // console.log('stdout: ' + stdout);
     // console.log('stderr: ' + stderr);
     document.getElementById("hexo_logs").innerHTML = stdout;
-    hexoNpmInstall(path);
+    // hexoNpmInstall(path);
     if (error !== null) {
       // console.log('exec error: ' + error);
       document.getElementById("hexo_logs").innerHTML = error;
     }
-});
-
+  });
 }
 
 var hexoNpmInstall = function (path) {
