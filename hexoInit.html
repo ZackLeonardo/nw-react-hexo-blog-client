@@ -6,26 +6,40 @@
   <script src="src/components/backServer/fs.js"></script>
   <script src="src/components/backServer/hexo.js"></script>
   <script src="src/components/backServer/writeConfig.js"></script>
+  <link rel="stylesheet" href="css/buttons.css">
+  <script src="js/jquery-2.1.4.js"></script>
+
 </head>
 <body>
   <div class="">
     <h1>please choose a hexo dictionary:</h1>
-    <input id="fileDialog" type="file" nwdirectory onChange="chooseFile('#fileDialog')"/>
+
+    <a href="#" class="button button-rounded button" onclick="mc()">choose folder</a>
+    <h3 id="puf"></h3>
+    <input id="fileDialog" type="file" nwdirectory style="display:none" onChange="chooseFile('#fileDialog')"/>
+
+
     <p id="hexo_logs"></p>
     <p id="npm_logs"></p>
   </div>
-  <!-- <div id="progressButton"></div> -->
-
   <!-- <script>
-    global.window = window;
-    global.document = document;
-    global.navigator = navigator;
-
-    require('./dist/components/progressUI/progressButton');
+  $=function(id){return document.getElementById(id);}
+  function mc(){var _i=$("fileDialog");_i.click();}
+  function mm(){$("puf").value=(document.f1.uf.value);}
+  window.onload=function(){
+  }
   </script> -->
-
   <script>
+    function mc(){
+      $("#fileDialog").click();
+    }
+
+    function mm() {
+      $("#puf").text($("#fileDialog").val());
+    }
+
     function chooseFile(name) {
+      mm();
       var chooser = document.querySelector(name);
       chooser.addEventListener("change", function(evt) {
         if (this.value != ''){
@@ -47,5 +61,6 @@
     }
     chooseFile('#fileDialog');
   </script>
+
 </body>
 </html>

@@ -1,6 +1,6 @@
 {
   "name": "nw-demo",
-  "main": "index.html",
+  "main": "hexoInit.html",
   "description": "hexo-client",
   "version": "0.0.1",
   "keywords": [
@@ -22,9 +22,11 @@
   "no-edit-menu": false,
   "window": {
     "title": "nw-blog",
-    "toolbar": false,
+    "toolbar": true,
     "min_width": 300,
     "min_height": 475,
+    "width": 800,
+    "height": 600,
     "max_width": 1360,
     "max_height": 900
   },

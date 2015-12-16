@@ -8,8 +8,10 @@ var win_hexo_conf;
 
 var winOptions = {
   position: 'center',
-  width: Window.width,
-  height: Window.height,
+  // width: Window.width,
+  // height: Window.height,
+  width: 800,
+  height: 600,
   toolbar: false,
   focus: true
 };
