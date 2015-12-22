@@ -6,13 +6,40 @@
     <script type="text/javascript" src="js/ejs_production.js"></script>
     <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css" charset="utf-8">
+    <link rel="stylesheet" href="css/buttons.css" charset="utf-8">
   </head>
   <body>
-    <div id="container">
+    <!-- <div id="container"></div>
+    <a href="" class="button button-rounded button" onclick="test()">保存</a> -->
 
+    <div class="container-fluid">
+    	<div class="row-fluid">
+    		<div class="span12" id="container">
+    		</div>
+    	</div>
+    	<div class="row-fluid">
+    		<div class="span12">
+    			 <button class="btn btn-block" type="button">按钮</button>
+    		</div>
+    	</div>
     </div>
-    <script type="text/javascript" src="js/hexoConfig/hexoConfig.js">
 
+    <script>
+      global.window = window;
+      global.document = document;
+      global.navigator = navigator;
+
+      var data = require('./src/components/backServer/loadHexoYml');
+      // var data = {	title:	'Cleaning Supplies',
+      // supplies:	['mop', 'broom', 'duster']	};
+    </script>
+    <script type="text/javascript">
+
+      var html = new EJS({url: 'hexoConfig.ejs'}).render(data);
+      $("#container").html(html);
+      function test() {
+        alert('haha');
+      }
     </script>
   </body>
 </html>

@@ -6,16 +6,22 @@
       <!-- Form Name -->
       <legend><%= title %></legend>
 
-      <% for (var i = 0; i < supplies.length; i++) { %>
+      <% for (var i = 0; i < label.length; i++) { %>
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-3 control-label" for="textinput">
-            <%= supplies[i] %>
+            <%= label[i] %>
           </label>
           <div class="col-md-6">
-            <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control ">
+            <input id="textinput" name="textinput" type="text" class="form-control"
+
+            <% if (value[i] != ""){ %>
+              placeholder= <%= value[i] %>
+            <%  } %>
+
+            >
             <p class="help-block">
-              <%= supplies[i] %>
+              <%= desc[i] %>
             </p>
           </div>
         </div>
