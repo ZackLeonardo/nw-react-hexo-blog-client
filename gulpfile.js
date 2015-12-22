@@ -2,7 +2,7 @@ var gulp = require("gulp");
 var babel = require("gulp-babel");
 
 // gulp.task('default',['mdeditor', 'folderSelector', 'splitPane', 'treeBeard']);
-gulp.task('default',['progressUI']);
+gulp.task('default',['hexoConfig']);
 
 /*
  * MDEditor
@@ -62,4 +62,13 @@ gulp.task("progressUI", function () {
   return gulp.src("src/components/progressUI/**/*.js")
     .pipe(babel())
     .pipe(gulp.dest("dist/components/progressUI"));
+});
+
+/*
+ * hexo config
+ */
+gulp.task("hexoConfig", function () {
+  return gulp.src("src/components/forms/**/*.js")
+    .pipe(babel())
+    .pipe(gulp.dest("dist/components/forms"));
 });

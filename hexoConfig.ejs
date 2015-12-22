@@ -1,0 +1,25 @@
+
+
+    <form class="form-horizontal">
+      <fieldset>
+
+      <!-- Form Name -->
+      <legend><%= title %></legend>
+
+      <% for (var i = 0; i < supplies.length; i++) { %>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="textinput">
+            <%= supplies[i] %>
+          </label>
+          <div class="col-md-6">
+            <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control ">
+            <p class="help-block">
+              <%= supplies[i] %>
+            </p>
+          </div>
+        </div>
+      <% } %>
+
+      </fieldset>
+    </form>
