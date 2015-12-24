@@ -8,7 +8,7 @@ var hexoInit = function (path) {
     // console.log('stdout: ' + stdout);
     // console.log('stderr: ' + stderr);
     document.getElementById("hexo_logs").innerHTML = stdout;
-    // hexoNpmInstall(path);
+    hexoNpmInstall(path);
     if (error !== null) {
       // console.log('exec error: ' + error);
       document.getElementById("hexo_logs").innerHTML = error;
@@ -23,6 +23,17 @@ var hexoNpmInstall = function (path) {
     if (error !== null) {
       // console.log('exec error: ' + error);
       document.getElementById("npm_logs").innerHTML = error;
+    }
+  });
+}
+
+var hexoNewMD = function (path, blogName) {
+  console.log(path);
+  exec('hexo n ' + blogName,{cwd: path} ,function (error, stdout, stderr) {
+    // document.getElementById("npm_logs").innerHTML = stdout;
+    if (error !== null) {
+      console.log('exec error: ' + error);
+      // document.getElementById("npm_logs").innerHTML = error;
     }
   });
 }

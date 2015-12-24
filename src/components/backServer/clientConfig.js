@@ -1,6 +1,6 @@
 'use strict';
 
-require('./src/components/backServer/fs.js');
+require('./src/components/backServer/files.js');
 
 var file = 'config.yml';
 var str = "\r\nhexoInit_path: " + str;
