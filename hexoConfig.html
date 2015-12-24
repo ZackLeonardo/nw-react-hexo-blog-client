@@ -19,17 +19,20 @@
     	</div>
     	<div class="row-fluid">
     		<div class="span12">
-    			 <button class="btn btn-block" type="button">按钮</button>
+    			 <button class="btn btn-block" type="button" onclick="save()">save</button>
     		</div>
     	</div>
     </div>
 
-    <script>
+    <script  type="text/javascript">
       global.window = window;
       global.document = document;
       global.navigator = navigator;
 
-      var data = require('./src/components/backServer/hexoConfig');
+
+      var data = require('./src/components/backServer/hexoConfig').data;
+      var hexoConfig = require('./src/components/backServer/hexoConfig').hexoConfig;
+      var configHexoYml = require('./src/components/backServer/hexoConfig').configHexoYml;
       // var data = {	title:	'Cleaning Supplies',
       // supplies:	['mop', 'broom', 'duster']	};
     </script>
@@ -37,8 +40,53 @@
 
       var html = new EJS({url: 'hexoConfig.ejs'}).render(data);
       $("#container").html(html);
-      function test() {
-        alert('haha');
+      function save() {
+        // console.log($("label").text()+ ":" + $("input.form-control").val());
+
+        // $("label").each(function(index, el) {
+        //   console.log(index + $(el).text());
+        // });
+        // $("input").each(function(index, el) {
+        //   console.log(index + $(el).val());
+        // });
+
+        $("input").each(function(index, el) {
+          if ($(el).val() != null && $(el).val() != ""){
+            // console.log("----" + index + "----" + $(el).val());
+            // console.log("----" + $("label").eq(index).text().replace(/\r\n|\n/g,"").replace(/\s+/g, "") + "----");
+            // eval('hexoConfig.' + $("label").eq(index).text() + '= "testhaha";' ) ;
+            // console.log(hexoConfig.title);
+
+            // console.log("----" + $("label").eq(index).text()+ "----");
+            if ($('label').eq(index).text().indexOf('_') > -1){
+              var labelTitle = $("label").eq(index).text().split('_');
+              var evalStr = 'hexoConfig.' + labelTitle[0] + '.' + labelTitle[1] + '= \'' + $(el).val() + '\';';
+              console.log(evalStr);
+              eval(evalStr) ;
+            }
+            else {
+              var evalStr = 'hexoConfig.' + $("label").eq(index).text() + '= \'' + $(el).val() + '\';';
+              console.log(evalStr);
+              eval(evalStr) ;
+            }
+
+
+            // var newLabel = $('label').eq(index);
+            // var strLabel = newLabel.text();
+
+            // if ($('label').eq(index).text().indexOf('_') > -1 ){
+            //   alert('get it');
+            // }
+
+            // if (strLabel.indexOf('_') > -1){
+            //   alert('get it');
+            // }
+            // alert(newLabel.contains('_').text());
+          }
+        });
+
+        configHexoYml('test.yml', hexoConfig);
+
       }
     </script>
   </body>

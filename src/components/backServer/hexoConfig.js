@@ -24,9 +24,9 @@ var data = {	title:	'hexo config form',
                 'email',
                 'language',
                 'theme',
-                'deploy type',
-                'deploy repo',
-                'deploy branch'
+                'deploy_type',
+                'deploy_repo',
+                'deploy_branch'
               ],
               value: [
                 hexoConfig.title,
@@ -53,10 +53,6 @@ var data = {	title:	'hexo config form',
                 '分支',
               ]
             };
-
-
-hexoConfig.title = 'test';
-
 
 var configHexoYml = function (file, hexoConfig){
     var str;
@@ -101,6 +97,6 @@ var configHexoYml = function (file, hexoConfig){
 
 };
 
-configHexoYml('test.yml', hexoConfig);
+// configHexoYml('test.yml', hexoConfig);
 
-module.exports = data;
+module.exports = {data, hexoConfig, configHexoYml};
