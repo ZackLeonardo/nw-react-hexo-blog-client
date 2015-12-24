@@ -1,13 +1,13 @@
-title: dd
-subtitle:
-description:
-author: John Doe
-language:
-timezone:
+title: 1
+subtitle: 2
+description: 3
+author: 4
+language: 6
+timezone: 
 url: http://yoursite.com
 root: /
 permalink: :year/:month/:day/:title/
-permalink_defaults:
+permalink_defaults: 
 source_dir: source
 public_dir: public
 tag_dir: tags
@@ -15,7 +15,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: 
 new_post_name: :title.md
 default_layout: post
 titlecase: false
@@ -25,19 +25,21 @@ render_drafts: false
 post_asset_folder: false
 relative_link: false
 future: true
-highlight:
+highlight: 
   enable: true
   line_number: true
   auto_detect: true
-  tab_replace:
+  tab_replace: 
 default_category: uncategorized
-category_map:
-tag_map:
+category_map: 
+tag_map: 
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 per_page: 10
 pagination_dir: page
-theme: landscape
-deploy:
-  type:
-  branch: dd
+theme: 7
+deploy: 
+  type: 8
+  repo: 9
+  branch: 0
+email: 5

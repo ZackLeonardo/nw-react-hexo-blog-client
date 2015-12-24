@@ -2,7 +2,7 @@
 
 var fs = require('fs');
 require('require-yaml');
-require('./fs.js');
+var files = require('./files.js');
 
 var config = require('../../../config.yml');
 
@@ -36,9 +36,9 @@ var data = {	title:	'hexo config form',
                 hexoConfig.email,
                 hexoConfig.language,
                 hexoConfig.theme,
-                hexoConfig.type,
-                hexoConfig.repo,
-                hexoConfig.branch
+                hexoConfig.deploy.type,
+                hexoConfig.deploy.repo,
+                hexoConfig.deploy.branch
               ],
               desc: [
                 '标题',
@@ -55,48 +55,28 @@ var data = {	title:	'hexo config form',
             };
 
 var configHexoYml = function (file, hexoConfig){
-    var str;
-    for (str in hexoConfig) {
-      var value = eval('hexoConfig.' + str);
-      if (value == null){
-        fs.appendFile(file, str+ ": " + "\r\n", function(err){
-            if(err)
-                console.log("fail " + err);
-        });
-      }else if (typeof(value) == 'object'){
-        fs.appendFile(file, str +": " + "\r\n", function(err){
-            if(err)
-                console.log("fail " + err);
-        });
-        var str1;
-        for (str1 in value) {
-          var value1 = eval( 'value.' + str1);
-          if (value1 == null){
-            fs.appendFile(file, "  " + str1+ ": " + "\r\n", function(err){
-                if(err)
-                    console.log("fail " + err);
-            });
-          }else {
-            fs.appendFile(file, "  " + str1+ ": " + value1 + "\r\n", function(err){
-                if(err)
-                    console.log("fail " + err);
-            });
-          }
+  files.deleteFile(file);
+  var str;
+  for (str in hexoConfig) {
+    var value = eval('hexoConfig.' + str);
+    if (value == null){
+      files.writeFile(file, str+ ": " + "\r\n")
+    }else if (typeof(value) == 'object'){
+      files.writeFile(file, str +": " + "\r\n")
+      var str1;
+      for (str1 in value) {
+        var value1 = eval( 'value.' + str1);
+        if (value1 == null){
+          files.writeFile(file, "  " + str1+ ": " + "\r\n");
+        }else {
+          files.writeFile(file, "  " + str1+ ": " + value1 + "\r\n");
         }
-        // fs.appendFile(file, str+ ": " + value + "\r\n", function(err){
-        //     if(err)
-        //         console.log("fail " + err);
-        // });
-      }else {
-        fs.appendFile(file, str+ ": " + value + "\r\n", function(err){
-            if(err)
-                console.log("fail " + err);
-        });
       }
+    }else {
+      files.writeFile(file, str+ ": " + value + "\r\n");
     }
+  }
 
 };
 
-// configHexoYml('test.yml', hexoConfig);
-
-module.exports = {data, hexoConfig, configHexoYml};
+module.exports = {data, hexoConfig, configHexoYml, filePath};

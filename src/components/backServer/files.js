@@ -28,29 +28,33 @@ var deleteFolderCMD = function (path) {
   exec('rm -rf ' + path ,function(err,out) {
     console.log(out); err && console.log(err);
   });
-}
+};
 
 //创建文件夹
 var mkdir = function (path) {
   fs.mkdirSync(path);
-}
+};
 
 var deleteFile = function (filePath) {
   if (filePath != ''){
     fs.unlinkSync(filePath);
   }
-}
+};
+
+// function deleteFile(filePath) {
+//   if (filePath != ''){
+//     fs.unlinkSync(filePath);
+//   }
+// }
 
 //写文件－－append
 var writeFile = function (file, str){
   fs.appendFile(file, str, function(err){
     if (err) {
       console.log("fail " + err);
-    }else {
-      console.log("write file success!");
     }
   });
-}
+};
 
 function readFile(file){
     fs.readFile(file, function(err, data){
@@ -66,3 +70,5 @@ function readFile(file){
         }
     });
 }
+
+module.exports = {deleteFolderRecursive, deleteFolderCMD, mkdir, deleteFile, writeFile}

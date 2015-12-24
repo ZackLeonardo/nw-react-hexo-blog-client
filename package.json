@@ -1,6 +1,6 @@
 {
   "name": "nw-demo",
-  "main": "hexoConfig.html",
+  "main": "index.html",
   "description": "hexo-client",
   "version": "0.0.1",
   "keywords": [
