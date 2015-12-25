@@ -4,42 +4,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Treebeard} from './treeBeard';
 
-const data = {
-    name: 'root',
-    children: [
-        {
-            name: 'parent',
-            children: [
-                {
-                    name: 'child',
-                    terminal: true,
-                    filePath: 'root/parent/child'
-                }
-            ]
-        },
-        {
-            name: 'loading parent',
-            loading: true
-        },
-        {
-            name: 'parent',
-            children: [
-                {
-                    name: 'nested parent',
-                    children: [
-                        {
-                            name: 'nested child',
-                            terminal: true,
-                            filePath: 'root/parent/nested parent/nested child'
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
-};
+var treeBeardLoadData = require('../../../src/components/backServer/files').treeBeardLoadData;
 
-
+require('require-yaml');
+var config = require('../../../config.yml');
+var MDFilePath = config.hexoInit_path + "/source/_posts";
 
 class TreeBeard extends React.Component {
   constructor(props){
@@ -67,11 +36,11 @@ class TreeBeard extends React.Component {
   render(){
     return (
       <Treebeard
-        data={data}
+        data={treeBeardLoadData(this.props.path)}
         onToggle={this.onToggle}
       />
     );
   }
 }
 
-ReactDOM.render(<TreeBeard />, document.getElementById('fileTree'));
+ReactDOM.render(<TreeBeard path = {MDFilePath}/>, document.getElementById('fileTree'));

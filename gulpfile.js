@@ -2,7 +2,17 @@ var gulp = require("gulp");
 var babel = require("gulp-babel");
 
 // gulp.task('default',['mdeditor', 'folderSelector', 'splitPane', 'treeBeard']);
-gulp.task('default',['hexoConfig']);
+gulp.task('default',['treeBeard']);
+
+/*
+ * hexo config
+ */
+gulp.task("rightClick", function () {
+  return gulp.src("src/components/backServer/rightClick.js")
+    .pipe(babel())
+    .pipe(gulp.dest("dist/components/backServer"));
+});
+
 
 /*
  * MDEditor
