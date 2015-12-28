@@ -26,6 +26,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var gui = global.window.nwDispatcher.requireNwGui();
+
+var addMenu;
+
 var TreeNode = (function (_React$Component) {
     _inherits(TreeNode, _React$Component);
 
@@ -46,6 +50,38 @@ var TreeNode = (function (_React$Component) {
             if (toggled !== undefined) {
                 this.setState({ toggled: toggled });
             }
+        }
+    }, {
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            addMenu = new gui.Menu();
+            addMenu.append(new gui.MenuItem({
+                label: 'New File',
+                click: function click() {
+                    // doSomething
+                    console.log('click New File button');
+                }
+            }));
+            addMenu.append(new gui.MenuItem({
+                label: 'Rename',
+                click: function click() {
+                    // doSomething
+                    console.log('click Rename button');
+                }
+            }));
+            addMenu.append(new gui.MenuItem({
+                label: 'Delete',
+                click: function click() {
+                    // doSomething
+                    console.log('click Delete button');
+                }
+            }));
+        }
+    }, {
+        key: 'contextMenu',
+        value: function contextMenu(e) {
+            e.preventDefault();
+            addMenu.popup(e.clientX, e.clientY);
         }
     }, {
         key: 'onClick',
@@ -87,7 +123,7 @@ var TreeNode = (function (_React$Component) {
                 this.renderHeader(decorators, animations),
                 _react2.default.createElement(
                     _velocityReact.VelocityTransitionGroup,
-                    _extends({}, animations.drawer, { ref: 'velocity' }),
+                    _extends({}, animations.drawer, { ref: 'velocity', onContextMenu: this.contextMenu }),
                     toggled ? this.renderChildren(decorators, animations) : null
                 )
             );

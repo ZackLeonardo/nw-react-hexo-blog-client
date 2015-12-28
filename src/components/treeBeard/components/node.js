@@ -6,6 +6,10 @@ import {VelocityTransitionGroup} from 'velocity-react';
 
 import NodeHeader from './header';
 
+var gui = global.window.nwDispatcher.requireNwGui();
+
+var addMenu;
+
 class TreeNode extends React.Component {
     constructor(props){
         super(props);
@@ -17,6 +21,35 @@ class TreeNode extends React.Component {
         if(toggled !== undefined){
             this.setState({ toggled });
         }
+    }
+    componentWillMount() {
+      addMenu = new gui.Menu();
+      addMenu.append(new gui.MenuItem({
+          label: 'New File',
+          click: function() {
+              // doSomething
+              console.log('click New File button');
+          }
+      }));
+      addMenu.append(new gui.MenuItem({
+          label: 'Rename',
+          click: function() {
+              // doSomething
+              console.log('click Rename button');
+          }
+      }));
+      addMenu.append(new gui.MenuItem({
+          label: 'Delete',
+          click: function() {
+              // doSomething
+              console.log('click Delete button');
+          }
+      }));
+    }
+
+    contextMenu(e) {
+        e.preventDefault();
+        addMenu.popup(e.clientX, e.clientY);
     }
     onClick(){
         let toggled = !this.state.toggled;
@@ -45,10 +78,13 @@ class TreeNode extends React.Component {
         return (
             <li style={this.props.style.base} ref="topLevel">
                 {this.renderHeader(decorators, animations)}
-                <VelocityTransitionGroup {...animations.drawer} ref="velocity">
+                <VelocityTransitionGroup {...animations.drawer} ref="velocity" onContextMenu={this.contextMenu}>
                     {toggled ? this.renderChildren(decorators, animations) : null}
+
                 </VelocityTransitionGroup>
+
             </li>
+
         );
     }
     renderHeader(decorators, animations){

@@ -2,7 +2,7 @@ var gulp = require("gulp");
 var babel = require("gulp-babel");
 
 // gulp.task('default',['mdeditor', 'folderSelector', 'splitPane', 'treeBeard']);
-gulp.task('default',["rightClick"]);
+gulp.task('default',["treeBeard", "treeBeard"]);
 
 /*
  * hexo config
