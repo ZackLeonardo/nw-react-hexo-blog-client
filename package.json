@@ -1,6 +1,6 @@
 {
   "name": "nw-demo",
-  "main": "index.html",
+  "main": "rightClick.html",
   "description": "hexo-client",
   "version": "0.0.1",
   "keywords": [
