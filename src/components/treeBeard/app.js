@@ -3,6 +3,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Treebeard} from './treeBeard';
+// var PubSub = require('pubsub-js');
+import PubSub from 'pubsub-js';
+
+var MY_TOPIC = "mdinit";
 
 var treeBeardLoadData = require('../../../src/components/backServer/files').treeBeardLoadData;
 
@@ -28,10 +32,14 @@ class TreeBeard extends React.Component {
     if(!node.terminal){
       this.onSubTreeToggled(node, toggled);
     }else{
-      window.alert(node.filePath);
+      // window.alert(node.filePath);
+      // window.alert(document.getElementById('app').innerHTML);
+
+      // to dispatch
+      // PubSub.publish('mdinit', this.props.path);
+      PubSub.publish(MY_TOPIC, node.filePath);
     }
     this.setState({ cursor: node });
-
   }
   render(){
     return (

@@ -4,6 +4,7 @@ var MyEditor = require('./MDEditor');
 var marked = require('marked');
 var React = require('react');
 var ReactDOM = require('react-dom');
+var PubSub = require('pubsub-js');
 
 // var ReactMarkdown = require('react-markdown');
 //
@@ -13,15 +14,38 @@ var ReactDOM = require('react-dom');
 //     <ReactMarkdown source={input} />,
 //     document.getElementById('container')
 // );
+var MY_TOPIC = "mdinit";
+var readFile = require('../../../src/components/backServer/files').readFile;
 
 var App = React.createClass({
 	displayName: 'App',
 
 	getInitialState: function getInitialState() {
 		return {
-			code: '# React Markdown Editor'
+			code: this.props.initCode
 		};
 	},
+
+	componentWillMount: function componentWillMount() {
+		// this.pubsub_token = PubSub.subscribe('mdinit', function (text) {
+		//   this.setState({
+		//     code: text,
+		//   });
+		// }.bind(this));
+		// document.getElementById('fileTree').addEventListener('click', this.handler);
+
+		PubSub.subscribe(MY_TOPIC, (function (msg, data) {
+			this.setState({
+				code: readFile(data)
+			});
+		}).bind(this));
+	},
+
+	componentWillUnmount: function componentWillUnmount() {
+		PubSub.unsubscribe(MY_TOPIC);
+		// document.getElementById('fileTree').removeEventListener('click', this.handler);
+	},
+
 	updateCode: function updateCode(newCode) {
 		this.setState({
 			code: newCode
@@ -41,11 +65,11 @@ var App = React.createClass({
 			React.createElement(
 				'div',
 				{ className: 'editor' },
-				React.createElement(MyEditor, { value: this.state.code, onChange: this.updateCode })
+				React.createElement(MyEditor, { id: 'MyEditor', value: this.state.code, onChange: this.updateCode })
 			),
 			React.createElement('div', { className: 'preview', dangerouslySetInnerHTML: { __html: preview } })
 		);
 	}
 });
 
-ReactDOM.render(React.createElement(App, null), document.getElementById('app'));
+ReactDOM.render(React.createElement(App, { initCode: '# React Markdown Editor' }), document.getElementById('app'));

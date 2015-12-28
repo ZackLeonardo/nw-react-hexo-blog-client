@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
 	bold: require('./bold'),
 	italic: require('./italic'),

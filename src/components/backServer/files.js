@@ -63,21 +63,35 @@ var writeFile = function (file, str){
   });
 };
 
-// function readFile(file){
-//     fs.readFile(file, function(err, data){
-//         if(err)
-//             console.log("读取文件fail " + err);
-//         else{
-//             // 读取成功时
-//             // 输出字节数组
-//             console.log(data);
-//             // 把数组转换为gbk中文
-//             var str = iconv.decode(data, 'gbk');
-//             console.log(str);
-//         }
-//     });
+// var readFile = function (file){
+//   var contents;
+//   fs.readFile(file, 'utf8', function (err,data) {
+//     if (err) {
+//       return console.log(err);
+//     }
+//     return console.log(data);
+//   });
+//
+//   // return data;
+//     // fs.readFile(file, function(err, data){
+//     //     if(err)
+//     //         console.log("读取文件fail " + err);
+//     //     else{
+//     //         // 读取成功时
+//     //         // 输出字节数组
+//     //         // console.log(data);
+//     //         // 把数组转换为gbk中文
+//     //         var str = iconv.decode(data, 'gbk');
+//     //         // console.log(str);
+//     //         return str;
+//     //     }
+//     // });
 // };
+var readFile = function (file) {
+  return fs.readFileSync(file,'utf-8');
+}
 
+// 加载treeBeard数据
 var treeBeardLoadData = function(path) {
   var data = JSON.parse('{}');
   if (path != ''){
@@ -119,6 +133,7 @@ var treeBeardLoadData = function(path) {
   return data;
 };
 
+// 从路径中获取所在文件夹名
 var getFolderNameFromDir = function (path) {
   if (path != ''){
     var paths = path.split('/');
@@ -130,4 +145,4 @@ var getFolderNameFromDir = function (path) {
   }
 };
 
-module.exports = {deleteFolderRecursive, deleteFolderCMD, mkdir, deleteFile, writeFile, treeBeardLoadData}
+module.exports = {deleteFolderRecursive, deleteFolderCMD, mkdir, deleteFile, writeFile, treeBeardLoadData, readFile}
