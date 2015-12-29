@@ -8,7 +8,49 @@ import NodeHeader from './header';
 
 var gui = global.window.nwDispatcher.requireNwGui();
 
+var dataInsert = require('./data').dataInsert;
+var dataDelete = require('./data').dataDelete;
+
+var files = require('../../../../src/components/backServer/files');
+
+// 添加右键菜单
 var addMenu;
+var menuMount = function(filePath) {
+  addMenu = new gui.Menu();
+  addMenu.append(new gui.MenuItem({
+      label: 'New File',
+      click: function() {
+          // doSomething
+          // dataInsert(data, {name: 'insertTest.md', terminal: true, filePath: 'insertTest.md'});
+          if (window.prompt('r u sure?')){
+            window.alert();
+          }
+      }
+  }));
+  addMenu.append(new gui.MenuItem({
+      type: 'separator',
+  }));
+  addMenu.append(new gui.MenuItem({
+      label: 'Rename',
+      click: function() {
+          // file rename
+
+          // if (window.confirm('ARE YOU SURE?')){
+          //   window.alert((this.state.toggled).bind(this));
+          //   // files.deleteFile('/Users/zoudeyi/Desktop/hexo/source/_posts/hello-world1.md');
+          // }
+      }
+  }));
+  addMenu.append(new gui.MenuItem({
+    label: 'Delete',
+    click: function() {
+      // delete file
+      if (window.confirm('ARE YOU SURE?')){
+        files.deleteFile(filePath);
+      }
+    }
+  }));
+}
 
 class TreeNode extends React.Component {
     constructor(props){
@@ -22,34 +64,13 @@ class TreeNode extends React.Component {
             this.setState({ toggled });
         }
     }
-    componentWillMount() {
-      addMenu = new gui.Menu();
-      addMenu.append(new gui.MenuItem({
-          label: 'New File',
-          click: function() {
-              // doSomething
-              console.log('click New File button');
-          }
-      }));
-      addMenu.append(new gui.MenuItem({
-          label: 'Rename',
-          click: function() {
-              // doSomething
-              console.log('click Rename button');
-          }
-      }));
-      addMenu.append(new gui.MenuItem({
-          label: 'Delete',
-          click: function() {
-              // doSomething
-              console.log('click Delete button');
-          }
-      }));
-    }
-
-    contextMenu(e) {
-        e.preventDefault();
-        addMenu.popup(e.clientX, e.clientY);
+    contextMenu(e, toggled) {
+      e.preventDefault();
+      if (e.currentTarget.id){
+        // window.alert(e.currentTarget.id);
+        menuMount(e.currentTarget.id);
+      }
+      addMenu.popup(e.clientX, e.clientY);
     }
     onClick(){
         let toggled = !this.state.toggled;
@@ -76,15 +97,13 @@ class TreeNode extends React.Component {
         const animations = this.animations();
         const toggled = this.state.toggled;
         return (
-            <li style={this.props.style.base} ref="topLevel">
-                {this.renderHeader(decorators, animations)}
-                <VelocityTransitionGroup {...animations.drawer} ref="velocity" onContextMenu={this.contextMenu}>
-                    {toggled ? this.renderChildren(decorators, animations) : null}
-
-                </VelocityTransitionGroup>
-
-            </li>
-
+          // 通过设置id将被点击的标签标识出来，通过onContextMenu实现右键事件
+          <li style={this.props.style.base} ref="topLevel" onContextMenu={this.contextMenu} id={this.props.node.filePath}>
+            {this.renderHeader(decorators, animations)}
+            <VelocityTransitionGroup {...animations.drawer} ref="velocity">
+              {toggled ? this.renderChildren(decorators, animations) : null}
+            </VelocityTransitionGroup>
+          </li>
         );
     }
     renderHeader(decorators, animations){

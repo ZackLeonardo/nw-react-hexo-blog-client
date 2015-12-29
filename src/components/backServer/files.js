@@ -39,6 +39,7 @@ var mkdir = function (path) {
   fs.mkdirSync(path);
 };
 
+// 删除文件
 var deleteFile = function (filePath) {
   if (filePath != ''){
     fs.unlink(filePath, function (err) {
