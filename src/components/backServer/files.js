@@ -43,11 +43,14 @@ var mkdir = function (path) {
 var deleteFile = function (filePath) {
   if (filePath != ''){
     fs.unlink(filePath, function (err) {
-      if (err) throw err;
-      console.log('successfully deleted /tmp/hello');
+      if (err) {
+        throw err;
+      }
+      console.log("delete file sucess");
     });
   }
 };
+
 
 // function deleteFile(filePath) {
 //   if (filePath != ''){

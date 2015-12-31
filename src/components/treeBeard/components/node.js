@@ -18,28 +18,28 @@ var addMenu;
 var menuMount = function(filePath) {
   addMenu = new gui.Menu();
   addMenu.append(new gui.MenuItem({
-      label: 'New File',
-      click: function() {
-          // doSomething
-          // dataInsert(data, {name: 'insertTest.md', terminal: true, filePath: 'insertTest.md'});
-          if (window.prompt('r u sure?')){
-            window.alert();
-          }
+    label: 'New File',
+    click: function() {
+      // doSomething
+      // dataInsert(data, {name: 'insertTest.md', terminal: true, filePath: 'insertTest.md'});
+      if (window.prompt('r u sure?')){
+        window.alert();
       }
+    }
   }));
   addMenu.append(new gui.MenuItem({
-      type: 'separator',
+    type: 'separator',
   }));
   addMenu.append(new gui.MenuItem({
-      label: 'Rename',
-      click: function() {
-          // file rename
+    label: 'Rename',
+    click: function() {
+        // file rename
 
-          // if (window.confirm('ARE YOU SURE?')){
-          //   window.alert((this.state.toggled).bind(this));
-          //   // files.deleteFile('/Users/zoudeyi/Desktop/hexo/source/_posts/hello-world1.md');
-          // }
-      }
+        // if (window.confirm('ARE YOU SURE?')){
+        //   window.alert((this.state.toggled).bind(this));
+        //   // files.deleteFile('/Users/zoudeyi/Desktop/hexo/source/_posts/hello-world1.md');
+        // }
+    }
   }));
   addMenu.append(new gui.MenuItem({
     label: 'Delete',
@@ -47,6 +47,20 @@ var menuMount = function(filePath) {
       // delete file
       if (window.confirm('ARE YOU SURE?')){
         files.deleteFile(filePath);
+        // 实现树的刷新
+        var obj = document.getElementById(filePath);
+        obj.addEventListener('delete', function (event) {
+          // window.alert(event.eventType);
+          obj.parentNode.removeChild(obj);
+        }, false);
+
+        var event = document.createEvent('HTMLEvents');
+        event.initEvent("delete", true, true);
+        event.eventType = 'delete';
+
+        obj.dispatchEvent(event);
+
+
       }
     }
   }));
@@ -73,24 +87,24 @@ class TreeNode extends React.Component {
       addMenu.popup(e.clientX, e.clientY);
     }
     onClick(){
-        let toggled = !this.state.toggled;
-        let onToggle = this.props.onToggle;
-        if(onToggle){ onToggle(this.props.node, toggled); }
-        this.setState({ toggled: toggled });
+      let toggled = !this.state.toggled;
+      let onToggle = this.props.onToggle;
+      if(onToggle){ onToggle(this.props.node, toggled); }
+      this.setState({ toggled: toggled });
     }
     animations(){
-        const props = this.props;
-        let anim = Object.assign({}, props.animations, props.node.animations);
-        return {
-            toggle: anim.toggle(this.state),
-            drawer: anim.drawer(this.state)
-        };
+      const props = this.props;
+      let anim = Object.assign({}, props.animations, props.node.animations);
+      return {
+        toggle: anim.toggle(this.state),
+        drawer: anim.drawer(this.state)
+      };
     }
     decorators(){
-        // Merge Any Node Based Decorators Into The Pack
-        const props = this.props;
-        let nodeDecorators = props.node.decorators || {};
-        return Object.assign({}, props.decorators, nodeDecorators);
+      // Merge Any Node Based Decorators Into The Pack
+      const props = this.props;
+      let nodeDecorators = props.node.decorators || {};
+      return Object.assign({}, props.decorators, nodeDecorators);
     }
     render(){
         const decorators = this.decorators();
