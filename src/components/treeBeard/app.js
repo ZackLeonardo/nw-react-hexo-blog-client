@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import {Treebeard} from './treeBeard';
 // var PubSub = require('pubsub-js');
 import PubSub from 'pubsub-js';
+var StyleSheet = require('react-style');
 
 var MY_TOPIC = "mdinit";
 
@@ -46,6 +47,7 @@ class TreeBeard extends React.Component {
       <Treebeard
         data={treeBeardLoadData(this.props.path)}
         onToggle={this.onToggle}
+        style={this.styles}
       />
     );
   }

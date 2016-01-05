@@ -34,11 +34,8 @@ var menuMount = function(filePath) {
     label: 'Rename',
     click: function() {
         // file rename
-
-        // if (window.confirm('ARE YOU SURE?')){
-        //   window.alert((this.state.toggled).bind(this));
-        //   // files.deleteFile('/Users/zoudeyi/Desktop/hexo/source/_posts/hello-world1.md');
-        // }
+        var obj = document.getElementById(filePath);
+        obj.style.backgroundColor = "#000000";
     }
   }));
   addMenu.append(new gui.MenuItem({
@@ -66,10 +63,14 @@ var menuMount = function(filePath) {
   }));
 }
 
+var latestFilePath;
+
 class TreeNode extends React.Component {
     constructor(props){
         super(props);
-        this.state = { toggled: props.node.toggled };
+        this.state = {
+          toggled: props.node.toggled,
+         };
         this.onClick = this.onClick.bind(this);
     }
     componentWillReceiveProps(props){
@@ -89,9 +90,30 @@ class TreeNode extends React.Component {
     onClick(){
       let toggled = !this.state.toggled;
       let onToggle = this.props.onToggle;
-      if(onToggle){ onToggle(this.props.node, toggled); }
+      if(onToggle){
+        onToggle(this.props.node, toggled);
+        if (this.props.node.terminal){
+          // this.props.style.header.base.color = 'red';
+          // for (var elem in document.getElementsByTagName("li")){
+          //   elem.style.backgroundColor = "red";
+          // }
+          this.setBorder();
+        }
+      }
+
       this.setState({ toggled: toggled });
     }
+
+    // 设置边框
+    setBorder(){
+      if (latestFilePath){
+        document.getElementById(latestFilePath).style.border=null;
+      }
+      latestFilePath = this.props.node.filePath;
+      document.getElementById(latestFilePath).style.border="thin groove #0000FF";
+      document.getElementById(latestFilePath).style.borderRadius="3px";
+    }
+
     animations(){
       const props = this.props;
       let anim = Object.assign({}, props.animations, props.node.animations);
