@@ -1,6 +1,7 @@
 'use strict';
 
 var fs = require('fs');
+var path = require("path");
 var exec = require('child_process').exec;
 // 加载编码转换模块
 var iconv = require('iconv-lite');
@@ -137,7 +138,7 @@ var treeBeardLoadData = function(path) {
   return data;
 };
 
-// 从路径中获取所在文件夹名
+// 从路径中获取所在文件夹名 /1/2/ ==> 2   /1/2/3.txt ==> 3.txt
 var getFolderNameFromDir = function (path) {
   if (path != ''){
     var paths = path.split('/');
@@ -149,4 +150,27 @@ var getFolderNameFromDir = function (path) {
   }
 };
 
-module.exports = {deleteFolderRecursive, deleteFolderCMD, mkdir, deleteFile, writeFile, treeBeardLoadData, readFile}
+// 重命名
+var rename = function (filepath, newName) {
+  fs.stat(filepath,function(err,stats){
+    if (err) {
+      console.log(err);
+      return; // exit here since stats will be undefined
+    }
+		if(stats.isFile()){
+			var filename = path.basename(filepath);
+			var parentDir =path.dirname(filepath);
+
+			if(newName != filename){
+				var newPath =parentDir+"/"+newName;
+				// console.log("going to rename from "+filepath+" to "+newPath);
+				fs.rename(filepath,newPath);
+			}
+		}else{
+		  console.log("this is not a file");
+		}
+	});
+};
+
+
+module.exports = {deleteFolderRecursive, deleteFolderCMD, mkdir, deleteFile, writeFile, treeBeardLoadData, readFile, getFolderNameFromDir, rename}

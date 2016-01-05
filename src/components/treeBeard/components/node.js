@@ -33,9 +33,13 @@ var menuMount = function(filePath) {
   addMenu.append(new gui.MenuItem({
     label: 'Rename',
     click: function() {
-        // file rename
-        var obj = document.getElementById(filePath);
-        obj.style.backgroundColor = "#000000";
+      // file rename
+      var name = files.getFolderNameFromDir(filePath)
+      var newName=window.prompt("CHANGE THE NAME:", name);
+      if (newName != null && newName != "")
+      {
+        files.rename(filePath, newName);
+      }
     }
   }));
   addMenu.append(new gui.MenuItem({
