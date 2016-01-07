@@ -8,10 +8,8 @@ import NodeHeader from './header';
 
 var gui = global.window.nwDispatcher.requireNwGui();
 
-var dataInsert = require('./data').dataInsert;
-var dataDelete = require('./data').dataDelete;
-
 var files = require('../../../../src/components/backServer/files');
+var hexoCMD = require('../../../../src/components/backServer/hexo');
 
 // 添加右键菜单
 var addMenu;
@@ -20,10 +18,24 @@ var menuMount = function(filePath) {
   addMenu.append(new gui.MenuItem({
     label: 'New File',
     click: function() {
-      // doSomething
-      // dataInsert(data, {name: 'insertTest.md', terminal: true, filePath: 'insertTest.md'});
-      if (window.prompt('r u sure?')){
-        window.alert();
+      // add new md
+      var newFileName=window.prompt("NEW FILE NAME:", "");
+      if (newFileName != null && newFileName != ""){
+        hexoCMD.hexoNewMD(files.getDirPath(filePath), newFileName);
+        // 实现树的刷新
+        var obj = document.getElementById(filePath);
+        var newObj = obj.cloneNode(true);
+        newObj.id = files.getDirPath(filePath) + newFileName + ".md";
+        for (var i = 0 ; i < newObj.childNodes.length; i++){
+          if (newObj.childNodes[i].tagName == "A"){
+            for (var j = 0 ; j < newObj.childNodes[i].childNodes.length; j++){
+              if (newObj.childNodes[i].childNodes[j].tagName == "DIV"){
+                newObj.childNodes[i].childNodes[j].childNodes[0].innerHTML = newFileName + ".md";
+              }
+            }
+          }
+        }
+        obj.parentNode.appendChild(newObj);
       }
     }
   }));

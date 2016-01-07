@@ -68,30 +68,6 @@ var writeFile = function (file, str){
   });
 };
 
-// var readFile = function (file){
-//   var contents;
-//   fs.readFile(file, 'utf8', function (err,data) {
-//     if (err) {
-//       return console.log(err);
-//     }
-//     return console.log(data);
-//   });
-//
-//   // return data;
-//     // fs.readFile(file, function(err, data){
-//     //     if(err)
-//     //         console.log("读取文件fail " + err);
-//     //     else{
-//     //         // 读取成功时
-//     //         // 输出字节数组
-//     //         // console.log(data);
-//     //         // 把数组转换为gbk中文
-//     //         var str = iconv.decode(data, 'gbk');
-//     //         // console.log(str);
-//     //         return str;
-//     //     }
-//     // });
-// };
 var readFile = function (file) {
   return fs.readFileSync(file,'utf-8');
 }
@@ -150,6 +126,13 @@ var getFolderNameFromDir = function (path) {
   }
 };
 
+// 获取路径
+var getDirPath = function (path) {
+  if (path != ''){
+    return path.substring(0,path.lastIndexOf("/")+1)
+  }
+};
+
 // 重命名
 var rename = function (filepath, newName) {
   fs.stat(filepath,function(err,stats){
@@ -173,4 +156,4 @@ var rename = function (filepath, newName) {
 };
 
 
-module.exports = {deleteFolderRecursive, deleteFolderCMD, mkdir, deleteFile, writeFile, treeBeardLoadData, readFile, getFolderNameFromDir, rename}
+module.exports = {deleteFolderRecursive, deleteFolderCMD, mkdir, deleteFile, writeFile, treeBeardLoadData, readFile, getFolderNameFromDir, rename, getDirPath}

@@ -37,3 +37,5 @@ var hexoNewMD = function (path, blogName) {
     }
   });
 }
+
+module.exports = {hexoNewMD}
