@@ -111,10 +111,10 @@ class TreeNode extends React.Component {
     contextMenu(e, toggled) {
       e.preventDefault();
       if (e.currentTarget.id){
-        // window.alert(e.currentTarget.id);
         menuMount(e.currentTarget.id);
+        addMenu.popup(e.clientX, e.clientY);
       }
-      addMenu.popup(e.clientX, e.clientY);
+
     }
     onClick(){
       let toggled = !this.state.toggled;

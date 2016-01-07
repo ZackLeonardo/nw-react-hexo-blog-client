@@ -25,6 +25,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 // var PubSub = require('pubsub-js');
 
+var StyleSheet = require('react-style');
+
 var MY_TOPIC = "mdinit";
 
 var treeBeardLoadData = require('../../../src/components/backServer/files').treeBeardLoadData;
@@ -76,7 +78,8 @@ var TreeBeard = (function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(_treeBeard.Treebeard, {
         data: treeBeardLoadData(this.props.path),
-        onToggle: this.onToggle
+        onToggle: this.onToggle,
+        style: this.styles
       });
     }
   }]);
