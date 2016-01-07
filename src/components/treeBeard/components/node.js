@@ -36,9 +36,22 @@ var menuMount = function(filePath) {
       // file rename
       var name = files.getFolderNameFromDir(filePath)
       var newName=window.prompt("CHANGE THE NAME:", name);
-      if (newName != null && newName != "")
+      if (newName != null && newName != "" && newName != name)
       {
         files.rename(filePath, newName);
+      }else if (newName == name){
+        console.log("same");
+      }
+      // 实现树的刷新
+      var obj = document.getElementById(filePath);
+      for (var i = 0 ; i < obj.childNodes.length; i++){
+        if (obj.childNodes[i].tagName == "A"){
+          for (var j = 0 ; j < obj.childNodes[i].childNodes.length; j++){
+            if (obj.childNodes[i].childNodes[j].tagName == "DIV"){
+              obj.childNodes[i].childNodes[j].childNodes[0].innerHTML = newName;
+            }
+          }
+        }
       }
     }
   }));
